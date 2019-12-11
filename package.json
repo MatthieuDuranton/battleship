@@ -1,0 +1,30 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "Battleships",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatthieuDuranton/battleship.git"
+  },
+  "keywords": [
+    "battleship",
+    "nodejs",
+    "realtime",
+    "OOP"
+  ],
+  "author": "MatthieuDuranton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MatthieuDuranton/battleship/issues"
+  },
+  "homepage": "https://github.com/MatthieuDuranton/battleship#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
