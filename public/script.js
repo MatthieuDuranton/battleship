@@ -10,40 +10,73 @@ canvas.height = board.number * board.size;
 board.gridInitialize()
 board.gridDisplay()
 
-let boat;
-let submarine = new Boat (2, 1);
-let destroyer = new Boat (3, 2);
-let tanker = new Boat (3, 1);
-let dreadnought = new Boat (4, 1);
-let carrier = new Boat (5, 1);
-let choice = 5;
-boatname = "Carrier"
+let turn
+let boat
+let choice
+let boatname
+let submarine
+let destroyer
+let tanker
+let dreadnought
+let carrier
+
+document.getElementById("turn").addEventListener("click", ()=>{
+   if (turn == 1){
+      turn = 2
+      document.getElementById("action").innerHTML = "Vertical";
+   }else if (turn == 2){
+      turn = 1
+      document.getElementById("action").innerHTML = "Horizontal";
+   }else{
+      turn = 1
+   }
+   return turn
+});
+
+
+document.getElementById("select").addEventListener("click", ()=>{
+   if (choice>=1 && choice<5){
+      choice++
+   }else{
+      choice = 1
+   }
+
+   if (choice == 1){
+      boat = submarine;
+      boatname = "Submarine";
+   }else if (choice == 2){
+      boat = tanker;
+      boatname = "Tanker";
+   }else if (choice == 3){
+      boat = destroyer;
+      boatname = "Destroyer";
+   }else if (choice == 4){
+      boat = dreadnought;
+      boatname = "Dreadnought";
+   }else if (choice == 5){
+      boat = carrier;
+      boatname = "Carrier";
+   }
+   document.getElementById("boatname").innerHTML = boatname;
+   return boat
+});
+
+
+
+
+
+
 document.getElementById("boatname").innerHTML = boatname;
 canvas.addEventListener("click",  () => {
-    if (choice == 1){
-        boat = submarine;
-        boatname = "Ready for war?!!!";
-     }else if (choice == 2){
-        boat = tanker;
-        boatname = "Submarine";
-     }else if (choice == 3){
-        boat = destroyer;
-        boatname = "Tanker";
-     }else if (choice == 4){
-        boat = dreadnought;
-        boatname = "Destroyer";
-     }else if (choice == 5){
-        boat = carrier;
-        boatname = "Dreadnought";
-     }else if (choice == 0){
-        boatname = "Ready for war?!!!";
-        boat = "";
-     }else{
-         choice = 0;
-     }
-    document.getElementById("boatname").innerHTML = boatname;
+submarine = new Boat (2, turn,);
+destroyer = new Boat (3, turn);
+tanker = new Boat (3, turn);
+dreadnought = new Boat (4, turn);
+carrier = new Boat (5, turn)
+
+   console.log(boat)
+    
     boat.boatInitialize();
-    choice--;
 })
 
 
