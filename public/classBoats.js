@@ -4,22 +4,21 @@ class Boat {
         this.position = position
     }
     boatInitialize(){
-            const x =  Math.floor(event.clientX / board.size - 0.2);
-            const y = Math.floor(event.clientY / board.size - 0.2);
-            if (this.position == 1){
-                console.log(this)
-                for (let i=0; i<this.size; i++){
-                    board.grid[y][x+i] = 1;
-                    board.gridDisplay()
-                }
-            }else if (this.position == 2){
-                console.log(this)
-                for (let i=0; i<this.size; i++){
-                    board.grid[y+i][x] = 1;
-                    board.gridDisplay()
-                }
+        //Prendre la position de la souris et arrondir à l'entier inférieur
+        //pour définir dans quelle case elle se trouve
+        const x =  Math.floor(event.clientX / board.size - 0.2);
+        const y = Math.floor(event.clientY / board.size - 0.2);
+        if (this.position == 1){
+            for (let i=0; i<this.size; i++){
+                board.grid[y][x+i] = 1;//construire le bateau sur l'axe des x
+                board.gridDisplay()//appeler la grille corrigée
             }
-            console.log(board.grid);
-            canvas.re
+        }else if (this.position == 2){
+            for (let i=0; i<this.size; i++){
+                board.grid[y+i][x] = 1;
+                board.gridDisplay()//appeler la grille corrigée
+            }
+        }
+        console.log(board.grid);
     }
 }
