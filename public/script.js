@@ -24,8 +24,7 @@ let l5 = 1
 let x//position souris axe des x
 let y//position souris axe des y
 let size//taille du bateau sélectionné
-
-
+let overlap = false//vériifier que les bateaux ne se superposent pas
 
 
 //pour défninir la position verticale ou horizontale du bateau
@@ -79,53 +78,74 @@ canvas.addEventListener("click",  () => {
    //pour définir dans quelle case elle se trouve
    x =  Math.floor(event.clientX / board.size - 0.2);
    y = Math.floor(event.clientY / board.size - 0.2);
-   //vérifier que le bateau reste dans les limites de la map
-   if ((turn == 1 && (x + size) <= 10) || (turn == 2 && (y + size) <= 10)){
-      if (choice == 1){
-         l1--
-            if(l1>=0){//vérifier que le sous marin n'a pas été déjà placé
-               boat = new Boat(size, turn, nbr)//création du ss marin
-               boat.boatInitialize();//appel à la création du nouveau bateau
-            }else{
-               document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
-            }
-      }else if (choice == 2){
-         l2--
-            if(l2>=0){
-               boat = new Boat (size, turn, nbr);
-               boat.boatInitialize();
-            }else{
-               document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
-            }
-      }else if (choice == 3){
-         l3--
-            if(l3>=0){
-               boat = new Boat (size, turn, nbr);
-               boat.boatInitialize();
-            }else{
-               document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
-            }
-      }else if (choice == 4){
-         l4--
-            if(l4>=0){
-               boat = new Boat (size, turn, nbr);
-               boat.boatInitialize();
-            }else{
-               document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
-            }
-      }else if (choice == 5){
-         l5--
-            if(l5>=0){
-               boat = new Boat (size, turn, nbr);
-               boat.boatInitialize();
-            }else{
-               document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
-            }
+
+   //vérifier que les bateaux ne se superposent pas
+   for (let i = 0; i<size; i++){
+      if ((turn == 1) && (board.grid[y][x+i] == 1) || (turn == 2) && (board.grid[y+i][x] == 1)){
+         overlap = true
+      }else{
+         overlap = false
       }
+   }
+   console.log(overlap)
+
+   if (overlap == true){
+      document.getElementById("boatname").innerHTML = "Boats can't overlap one another, place it elsewhere"
+      // overlap = false
    }else{
-      document.getElementById("boatname").innerHTML = "Boat won't fit in the grid, place it elsewhere"
+      //vérifier que le bateau reste dans les limites de la map
+      if ((turn == 1 && (x + size) <= 10) || (turn == 2 && (y + size) <= 10)){
+         if (choice == 1){
+            l1--
+               if(l1>=0){//vérifier que le sous marin n'a pas été déjà placé
+                  boat = new Boat(size, turn, nbr)//création du ss marin
+                  boat.boatInitialize();//appel à la création du nouveau bateau
+               }else{
+                  document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
+               }
+         }else if (choice == 2){
+            l2--
+               if(l2>=0){
+                  boat = new Boat (size, turn, nbr);
+                  boat.boatInitialize();
+               }else{
+                  document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
+               }
+         }else if (choice == 3){
+            l3--
+               if(l3>=0){
+                  boat = new Boat (size, turn, nbr);
+                  boat.boatInitialize();
+               }else{
+                  document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
+               }
+         }else if (choice == 4){
+            l4--
+               if(l4>=0){
+                  boat = new Boat (size, turn, nbr);
+                  boat.boatInitialize();
+               }else{
+                  document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
+               }
+         }else if (choice == 5){
+            l5--
+               if(l5>=0){
+                  boat = new Boat (size, turn, nbr);
+                  boat.boatInitialize();
+               }else{
+                  document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
+               }
+         }
+      }else{
+         document.getElementById("boatname").innerHTML = "Boat won't fit in the grid, place it elsewhere"
+      }
    }
 })
+
+//effacer un bateau
+document.getElementById("erase").addEventListener("click", ()=>{
+   
+});
 
 
     
