@@ -10,11 +10,22 @@ canvas.height = board.number * board.size;
 board.gridInitialize()
 board.gridDisplay()
 
-let turn
-let position
+//variables utilisées
+let turn//position verticale ou horizontale
 let boat
-let choice
-let boatname
+let choice//choix du bateau à poser
+let boatname//nom du bateau
+let nbr = 5//nbre de bateaux à placer
+let l1 = 1//nbre de fois que l'on peut placer un ss marin
+let l2 = 1//idem tanker
+let l3 = 1
+let l4 = 1
+let l5 = 1
+let x//position souris axe des x
+let y//position souris axe des y
+let size//taille du bateau sélectionné
+
+
 
 
 //pour défninir la position verticale ou horizontale du bateau
@@ -26,14 +37,13 @@ document.getElementById("turn").addEventListener("click", ()=>{
    }else{
       turn = 1//initialiser turn à 1
    }
-
+   let position
    if (turn == 1){
       position = "Horizontal"
    }else if (turn == 2){
       position = "Vertical"
    }
    document.getElementById("action").innerHTML = position;
-   return turn//toujours placer le return en fin de fonction car il la stoppe
 });
 
 //pour déterminer quel bateau placer
@@ -46,36 +56,75 @@ document.getElementById("select").addEventListener("click", ()=>{
    
    if (choice == 1){
       boatname = "Submarine";
+      size = 2
    }else if (choice == 2){
       boatname = "Tanker";
+      size = 3
    }else if (choice == 3){
       boatname = "Destroyer";
+      size = 3
    }else if (choice == 4){
       boatname = "Dreadnought";
+      size = 4
    }else if (choice == 5){
       boatname = "Carrier";
+      size = 5
    }
    document.getElementById("boatname").innerHTML = boatname;
-   return choice
 });
 
-//Placer le bateau choisit à la bonne position sur la grille où elle est cliquée
+//Placer le bateau choisi à la bonne position sur la grille où elle est cliquée
 canvas.addEventListener("click",  () => {
-   if (choice == 1){
-      boat = new Boat (2, turn,);
-   }else if (choice == 2){
-      boat = new Boat (3, turn);
-   }else if (choice == 3){
-      boat = new Boat (3, turn);
-   }else if (choice == 4){
-      boat = new Boat (4, turn);
-   }else if (choice == 5){
-      boat = new Boat (5, turn);
+   //Prendre la position de la souris et arrondir à l'entier inférieur
+   //pour définir dans quelle case elle se trouve
+   x =  Math.floor(event.clientX / board.size - 0.2);
+   y = Math.floor(event.clientY / board.size - 0.2);
+   //vérifier que le bateau reste dans les limites de la map
+   if ((turn == 1 && (x + size) <= 10) || (turn == 2 && (y + size) <= 10)){
+      if (choice == 1){
+         l1--
+            if(l1>=0){//vérifier que le sous marin n'a pas été déjà placé
+               boat = new Boat(size, turn, nbr)//création du ss marin
+               boat.boatInitialize();//appel à la création du nouveau bateau
+            }else{
+               document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
+            }
+      }else if (choice == 2){
+         l2--
+            if(l2>=0){
+               boat = new Boat (size, turn, nbr);
+               boat.boatInitialize();
+            }else{
+               document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
+            }
+      }else if (choice == 3){
+         l3--
+            if(l3>=0){
+               boat = new Boat (size, turn, nbr);
+               boat.boatInitialize();
+            }else{
+               document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
+            }
+      }else if (choice == 4){
+         l4--
+            if(l4>=0){
+               boat = new Boat (size, turn, nbr);
+               boat.boatInitialize();
+            }else{
+               document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
+            }
+      }else if (choice == 5){
+         l5--
+            if(l5>=0){
+               boat = new Boat (size, turn, nbr);
+               boat.boatInitialize();
+            }else{
+               document.getElementById("boatname").innerHTML = "Boat already on war, pick another-one"
+            }
+      }
+   }else{
+      document.getElementById("boatname").innerHTML = "Boat won't fit in the grid, place it elsewhere"
    }
-
-   console.log(boat, choice, turn)
-    
-    boat.boatInitialize();
 })
 
 

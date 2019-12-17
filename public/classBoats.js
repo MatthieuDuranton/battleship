@@ -1,24 +1,42 @@
 class Boat {
-    constructor(size, position){
-        this.size = size
-        this.position = position
+    constructor(size, position, number){
+        this.size = size//taille du bateau
+        this.position = position//verticale ou horizontale
+        this.number = number//nbre de bateaux à poser
     }
+     
     boatInitialize(){
-        //Prendre la position de la souris et arrondir à l'entier inférieur
-        //pour définir dans quelle case elle se trouve
-        const x =  Math.floor(event.clientX / board.size - 0.2);
-        const y = Math.floor(event.clientY / board.size - 0.2);
-        if (this.position == 1){
-            for (let i=0; i<this.size; i++){
-                board.grid[y][x+i] = 1;//construire le bateau sur l'axe des x
-                board.gridDisplay()//appeler la grille corrigée
+        if (this.number > 1){//Il reste plusieurs bateaux à placer
+            if (this.position == 1){
+                for (let i=0; i<this.size; i++){
+                        board.grid[y][x+i] = 1;//construire le bateau sur l'axe des x
+                        board.gridDisplay()//appeler la grille corrigée
+                }
+            }else if (this.position == 2){
+                for (let i=0; i<this.size; i++){
+                    board.grid[y+i][x] = 1;
+                    board.gridDisplay()
+                }
+            }  
+        
+        }else if (this.number == 1){//Ne reste plus qu'un bateau à placer
+            if (this.position == 1){
+                for (let i=0; i<this.size; i++){
+                    board.grid[y][x+i] = 1;//construire le bateau sur l'axe des x
+                    board.gridDisplay()//appeler la grille corrigée
+                }
+            }else if (this.position == 2){
+                for (let i=0; i<this.size; i++){
+                        board.grid[y+i][x] = 1;
+                        board.gridDisplay()
+                }
             }
-        }else if (this.position == 2){
-            for (let i=0; i<this.size; i++){
-                board.grid[y+i][x] = 1;
-                board.gridDisplay()//appeler la grille corrigée
-            }
+            document.getElementById("boatname").innerHTML = "Fleet on her way. Ready for war?"
+        
+        }else if (this.number < 1){//Ne reste plus de bateaux à placer
+        document.getElementById("boatname").innerHTML = "Fleet on her way. Ready for war?"
         }
+        nbr--
         console.log(board.grid);
     }
 }
