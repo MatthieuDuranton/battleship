@@ -18,12 +18,18 @@ class Grid {
             array.forEach ((number, x) => {
                 ctx.strokeStyle = "black";
                 ctx.strokeRect(x*this.size, y*this.size, this.size, this.size);
-                        if (this.grid[y][x] == 1){
-                            ctx.fillStyle = "black";
-                            ctx.fillRect(x*board.size, y*board.size, board.size, board.size);
-                        }
-                    
-                
+                if (this.grid[y][x] == 1){
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(x*board.size, y*board.size, board.size, board.size);
+                }else if (this.grid[y][x] == 2){
+                    ctx.fillStyle = "red";
+                    ctx.fillRect(x*board.size, y*board.size, board.size, board.size);
+                }else if (this.grid[y][x] == 0){
+                    //ctx.fillStyle = "blue";
+                    ctx.clearRect(x*board.size, y*board.size, board.size, board.size);
+                    ctx.strokeStyle = "black";
+                    ctx.strokeRect(x*this.size, y*this.size, this.size, this.size);
+                }
             })
         })         
     }

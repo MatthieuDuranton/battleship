@@ -163,11 +163,14 @@ canvas.addEventListener("click",  () => {
       }
       if(remove == true){
          console.log("touché")
+         board.grid[y][x] = 0
       }else{
          console.log("dans l'eau")
       }
       remove = false
       action = 1
+      console.log(board.grid);
+      board.gridDisplay()
    }   
 })
 
