@@ -25,7 +25,7 @@ class Grid {
                     ctx.fillStyle = "red";
                     ctx.fillRect(x*board.size, y*board.size, board.size, board.size);
                 }else if (this.grid[y][x] == 0){
-                    //ctx.fillStyle = "blue";
+                    //réinitialiser le canvas pour le remettre transparent si d'autres couleurs furent mises
                     ctx.clearRect(x*board.size, y*board.size, board.size, board.size);
                     ctx.strokeStyle = "black";
                     ctx.strokeRect(x*this.size, y*this.size, this.size, this.size);

@@ -152,10 +152,12 @@ canvas.addEventListener("click",  () => {
          }
       }
 
-   //vérifier si un bateau est sur la case cliquée
+   //vérifier si un bateau se trouve sur la case cliquée
    }else if (action == 2){
       for (i=0; i<boatsPosition.length; i++){
+         //existe t'il un x dans les arrays des bateaux équivalent à celui cliqué
          if (boatsPosition[i][1] == x){
+            //existe t'il un y équivalent à celui cliqué lié au x
             if (boatsPosition[i][2] == y){
                remove = true
             }
@@ -168,7 +170,7 @@ canvas.addEventListener("click",  () => {
          console.log("dans l'eau")
       }
       remove = false
-      action = 1
+      action = 1//revenir en mode pose de bateaux
       console.log(board.grid);
       board.gridDisplay()
    }   
