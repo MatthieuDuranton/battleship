@@ -19,6 +19,6 @@
 * Socket
 
 ### Specificities:
-* We had 4 days to complete the task so I decided to focus on algorythm and OO.
+* We had 4 days to complete the task so I decided to focus on algorithm and OO.
 * I used canvas to create the grid
 * I still work on it to get experience even if I will soon focus on Python
