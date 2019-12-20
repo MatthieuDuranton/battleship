@@ -1,4 +1,5 @@
 # Battleship
+* to try the game: node index.js in the terminal and localhost:3000
 
 ### Goals:
 * Train to code Object oriented
