@@ -8,8 +8,7 @@
 ### Context:
 * fourth training month
 * First time we worked in OO
-* We knew nothing of MVC
-
+* Done by myself
 ### Langages and framework :
 * HTML
 * CSS
